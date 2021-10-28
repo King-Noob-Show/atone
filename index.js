@@ -2,10 +2,12 @@
 const fs = require("fs")
 const { Client, Collection, Intents } = require("discord.js");
 const dotenv = require("dotenv");
+
 //Calling dotenv i guess.....
 dotenv.config()
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 const token = process.env.TOKEN;
+
 //Command Collection
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -31,6 +33,7 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+//Reading and Executing Event Commands
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
@@ -40,7 +43,7 @@ for (const file of eventFiles) {
 	} else {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
-}
+};
 
 //Logging in
 client.login(token);
