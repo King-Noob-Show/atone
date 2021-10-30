@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 
 //Calling dotenv i guess.....
 dotenv.config()
-const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+const client = new Client( { intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES ] })
 const token = process.env.TOKEN;
 
 //Command Collection
