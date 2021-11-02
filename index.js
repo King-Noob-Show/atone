@@ -1,49 +1,17 @@
-//Require the modules lol
-const fs = require("fs")
-const { Client, Collection, Intents } = require("discord.js");
-const dotenv = require("dotenv");
+const { Client, Collection } = require("discord.js");
+const dotenv = require('dotenv');
 
-//Calling dotenv i guess.....
-dotenv.config()
-const client = new Client( { intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES ] })
-const token = process.env.TOKEN;
-
-//Command Collection
-client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.data.name, command);
-}
-
-//Command Code
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
-
-	const command = client.commands.get(interaction.commandName);
-
-	if (!command) return;
-
-	try {
-		await command.execute(interaction);
-	} catch (error) {
-		console.error(error);
-		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
+const client = new Client({
+    intents: 32767,
 });
+module.exports = client;
 
-//Reading and Executing Event Commands
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+// Global Variables
+client.commands = new Collection();
+client.slashCommands = new Collection();
+dotenv.config()
 
-for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
-};
+// Initializing the project
+require("./handler")(client);
 
-//Logging in
-client.login(token);
+client.login(process.env.TOKEN);

@@ -1,7 +1,5 @@
-module.exports = {
-	name: 'ready',
-	once: true,
-	execute(client) {
-		console.log(`Ready! Logged in as ${client.user.tag}`);
-	},
-};
+const client = require("../index");
+
+client.on("ready", () =>
+    console.log(`${client.user.tag} is up and ready to go! Hopefully the code has no errors!`)
+);
