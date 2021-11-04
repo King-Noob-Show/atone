@@ -1,5 +1,6 @@
-const client = require("../index");
+const client = require("..");
 
-client.on("ready", () =>
-    console.log(`${client.user.tag} is up and ready to go! Hopefully the code has no errors!`)
-);
+client.on('ready', () => {
+    console.log(`${client.user.username} Is Online`);
+    client.user.setActivity(`Your Soul`,{type : "WATCHING"});
+})

@@ -26,6 +26,7 @@
     "discord.js": "^13.3.0",
     "dotenv": "^10.0.0",
     "glob": "^7.2.0",
-    "mongoose": "^6.0.12"
+    "mongoose": "^6.0.12",
+    "reconlx": "^2.5.1"
   }
 }
