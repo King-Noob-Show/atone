@@ -45,7 +45,7 @@ module.exports = new Command({
                 } catch (e) {
                     console.log(e);
                 }
-                interaction.followUp({ embeds: [homeEmbed], ephemeral: true })
+                interaction.followUp({ embeds: [homeEmbed], ephemeral: false })
             }
         } catch (e) {
             console.log(e);

@@ -25,19 +25,12 @@ client.on('interactionCreate', async interaction => {
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
         if(interaction.member.id === client.user.id){
-            interaction.followUp(`Its Me...`)
+            interaction.followUp(`Its Me...Wait Wh-`)
         }
         if (cmd) {
             // checking user perms
             if (!interaction.member.permissions.has(cmd.userPermissions || [])) {
-                return interaction.followUp({
-                    embeds: [
-                        new MessageEmbed()
-                            .setColor(ee.embed_color)
-                            .setDescription(`You don't Have ${cmd.userPermissions} To Run Command..`)
-                            .setFooter(ee.embed_footertext, ee.embed_footericon)
-                    ]
-                })
+                return interaction.followUp({content: `You dont have enough permissions to use this command!\n You need ${cmd.userPermissions} to use this command!`, ephemeral: true})
             }
             cmd.run({ client, interaction, args });
 
