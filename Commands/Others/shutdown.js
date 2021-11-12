@@ -14,8 +14,12 @@ module.exports = new Command({
         ephemeral: true,
       });
     }
-    await interaction.followUp({
+    interaction.followUp({
       content: "Shutting Down Bot.......",
+      ephemeral: false,
+    });
+    interaction.editReply({
+      content: "Bot Has Been Shut Down!",
       ephemeral: false,
     });
     return process.exit();
