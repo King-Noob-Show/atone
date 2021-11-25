@@ -27,7 +27,10 @@
     "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
     "glob": "^7.2.0",
-    "mongoose": "^6.0.12",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.13",
+    "nekos.life": "^2.0.7",
+    "node-fetch": "^3.1.0",
     "random-jokes-api": "^1.5.9",
     "reconlx": "^2.5.1",
     "twemoji-parser": "^13.1.0"

@@ -46,4 +46,6 @@ client.on("interactionCreate", async (interaction) => {
     const command = client.Commands.get(interaction.commandName);
     if (command) command.run(client, interaction);
   }
+
+  if (!interaction.isButton()) return;
 });

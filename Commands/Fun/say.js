@@ -1,4 +1,4 @@
-const { Command } =  require('reconlx');
+const { Command } = require("reconlx");
 
 module.exports = new Command({
   name: "say",
@@ -16,6 +16,9 @@ module.exports = new Command({
   run: async ({ client, interaction, args }) => {
     const input = interaction.options.getString("input");
 
-    await interaction.followUp({content: `${interaction.member.nickname} says ${input}`, ephemeral: false});
+    await interaction.followUp({
+      content: `${interaction.user.username} says ${input}`,
+      ephemeral: false,
+    });
   },
 });
