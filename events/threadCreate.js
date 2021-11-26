@@ -1,9 +1,7 @@
 const client = require("..");
 
-client.on('threadCreate', (thread) => {
-    try {
-        thread.join()
-    } catch (e) {
-        console.log(e.message);
-    }
-})
+client.on("threadCreate", (thread) => {
+  if (thread.joinable()) {
+    return thread.join();
+  }
+});
