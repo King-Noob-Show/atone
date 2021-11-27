@@ -8,19 +8,28 @@ module.exports = new Command({
   description: `Show Bot All Commands`,
   userPermissions: ["SEND_MESSAGES"],
   category: "Information",
+  options: [
+    {
+      name: "command",
+      description: "The command you need help with!",
+      type: "STRING",
+      required: false,
+    },
+  ],
   // command start
   run: async ({ client, interaction, args }) => {
+    const command = interaction.options.getString("command");
     try {
-      if (args[0]) {
+      if (command) {
         const embed = new MessageEmbed();
-        const cmd = client.Commands.get(args[0].toLowerCase());
+        const cmd = client.Commands.get(command.toLowerCase());
         if (!cmd) {
           return interaction.followUp({
             embeds: [
               embed
                 .setColor(ee.embed_wrongcolor)
                 .setDescription(
-                  `No Information found for command **${args[0].toLowerCase()}**`
+                  `No Information found for command **${command.toLowerCase()}**`
                 ),
             ],
           });

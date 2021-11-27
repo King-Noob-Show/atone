@@ -1,20 +1,25 @@
-const { MessageEmbed } = require("discord.js");
 const client = require("..");
-const ee = require("../settings/embed.json");
-client.on("messageCreate", async (message) => {
-  if (message.author.bot || !message.guild) return;
+const dotenv = require("dotenv");
+dotenv.config();
+const prefix = process.env.prefix;
 
-  const prefixRegex = new RegExp(`^(<@!?${client.user.id}>)`);
-  if (!prefixRegex.test(message.content)) return;
-  const [, mPrefix] = message.content.match(prefixRegex);
-  if (mPrefix.includes(client.user.id)) {
-    message.reply({
-      embeds: [
-        new MessageEmbed()
-          .setColor(ee.embed_color)
-          .setFooter(ee.embed_footertext, ee.embed_footericon)
-          .setTitle(`**To See My All Commans Type **\`/help\``),
-      ],
-    });
-  }
+client.on("messageCreate", async (message) => {
+  if (
+    message.author.bot ||
+    !message.guild ||
+    !message.content.toLowerCase().startsWith(prefix)
+  )
+    return;
+
+  const [cmd, ...args] = message.content
+    .slice(prefix.length)
+    .trim()
+    .split(/ +/g);
+
+  const mcommand =
+    client.mcommands.get(cmd.toLowerCase()) ||
+    client.mcommands.find((c) => c.aliases?.includes(cmd.toLowerCase()));
+
+  if (!mcommand) return;
+  await mcommand.run(client, message, args);
 });

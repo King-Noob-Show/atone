@@ -35,6 +35,7 @@ const ee = require("./settings/embed.json");
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 // Global Variables
+client.mcommands = new Collection()
 client.events = new Collection();
 client.cooldowns = new Collection();
 client.Commands = new Collection();
@@ -42,7 +43,7 @@ client.categories = fs.readdirSync("./Commands/");
 
 // Initializing the project
 //Loading files, with the client variable like Command Handler, Event Handler, ...
-["event_handler", "slash_handler"].forEach((handler) => {
+["event_handler", "slash_handler", "message_handler"].forEach((handler) => {
   require(`./handlers/${handler}`)(client);
 });
 

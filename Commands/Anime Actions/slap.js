@@ -2,18 +2,18 @@ const { Command } = require("reconlx");
 const nekos = require("nekos.life");
 const { MessageEmbed } = require("discord.js");
 const {
-  sfw: { baka },
+  sfw: { slap },
 } = new nekos();
 
 module.exports = new Command({
-  name: "baka",
-  description: "@user is a baka!",
+  name: "slap",
+  description: "Slap a user",
   userPermissions: ["ATTACH_FILES"],
   category: "Anime Actions",
   options: [
     {
       name: "user",
-      description: "The user that is a total BAKA!",
+      description: "The user to slap",
       type: "USER",
       required: true,
     },
@@ -21,9 +21,7 @@ module.exports = new Command({
 
   run: async ({ client, interaction, args }) => {
     const user = interaction.options.getMember("user");
-    const { url } = await baka().catch((e) => {
-      console.log(e);
-    });
+    const { url } = await slap().catch((e) => console.log(e));
     const embed = new MessageEmbed()
       .setColor("AQUA")
       .setImage(url)
@@ -32,16 +30,23 @@ module.exports = new Command({
     if (!url)
       return interaction.followUp({
         content:
-          "Sorry, But this command cannot be used right now! Please contact the owner of the bot.",
+          "Sorry but this command cannot be used right now! Please contact the Owner!",
         ephemeral: true,
       });
-
     if (user.id === client.user.id)
       return interaction.followUp({
-        content: "You dare call me a baka! You peasant!!",
+        content: "You cannot slap me! You peasant!!",
+        ephemeral: false,
+      });
+    if (interaction.user.id === user.id)
+      return interaction.followUp({
+        content: "You cannot slap yourself :/",
         ephemeral: false,
       });
 
-    interaction.followUp({ content: `${user} Baka!`, embeds: [embed] });
+    interaction.followUp({
+      content: `${user} was slapped by ${interaction.user}!`,
+      embeds: [embed],
+    });
   },
 });
