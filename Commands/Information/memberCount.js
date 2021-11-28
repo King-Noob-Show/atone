@@ -9,6 +9,7 @@ module.exports = new Command({
   description: "Displays the server's membercount.",
   userPermissions: ["SEND_MESSAGES"],
   category: "Information",
+  usage: "/membercount",
   run: async ({ client, interaction, args }) => {
     const embed = new MessageEmbed()
       .setTitle(`Member Count of ${interaction.guild.name}`)

@@ -6,6 +6,7 @@ module.exports = new Command({
   description: "Provides Avatar of the provided user or slash command user",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/avatar [user]",
   options: [
     {
       name: "user",

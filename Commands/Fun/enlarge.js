@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "Enlarge an emoji",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/enlarge <emoji>",
   options: [
     {
       name: "emoji",

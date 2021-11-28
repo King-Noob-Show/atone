@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "A command for the owner to shutdown the bot.",
   userPermissions: ["ADMINISTRATOR"],
   category: "Others",
+  usage: "/shutdown",
   run: async ({ client, interaction, args }) => {
     if (interaction.user.id !== process.env.OWNER_ID) {
       return interaction.followUp({
@@ -22,6 +23,6 @@ module.exports = new Command({
       content: "Bot Has Been Shut Down!",
       ephemeral: false,
     });
-    return process.exit();
+    process.exit();
   },
 });

@@ -11,6 +11,7 @@ module.exports = new Command({
   description: "Search Videos On Youtube!",
   userPermissions: ["EMBED_LINKS" || "ATTACH_FILES"],
   category: "Fun",
+  usage: "/yt-search <name>",
   options: [
     {
       name: "name",

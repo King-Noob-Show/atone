@@ -5,6 +5,7 @@ module.exports = new Command({
   description: "Kick a person(or maybe a bot)!",
   category: "Moderation",
   userPermissions: ["KICK_MEMBERS"],
+  usage: "/kick <user> [reason]",
   options: [
     {
       name: "user",

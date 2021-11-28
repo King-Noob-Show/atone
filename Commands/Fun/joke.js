@@ -10,6 +10,7 @@ module.exports = new Command({
   description: "Tells a random joke",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/joke",
 
   run: async ({ client, interaction, args }) => {
     const joke = Memer.joke();

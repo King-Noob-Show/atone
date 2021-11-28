@@ -8,6 +8,7 @@ module.exports = new Command({
   description: "Get information about a user or a server.",
   userPermissions: ["SEND_MESSAGES"],
   category: "Information",
+  usage: "/information server or /information user [user]",
   options: [
     {
       name: "server",

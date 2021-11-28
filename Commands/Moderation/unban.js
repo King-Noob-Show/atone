@@ -5,6 +5,7 @@ module.exports = new Command({
   description: "Unban a person(or maybe a bot)!",
   category: "Moderation",
   userPermissions: ["KICK_MEMBERS"],
+  usage: "/unban <user id>",
   options: [
     {
       name: "userid",

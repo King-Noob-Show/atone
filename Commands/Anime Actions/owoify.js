@@ -9,6 +9,7 @@ module.exports = new Command({
   description: "OwOify a message!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Anime Actions",
+  usage: "/owoify <message>",
   options: [
     {
       name: "message",

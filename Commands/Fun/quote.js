@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "Tells a random quote!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/quote",
 
   run: async ({ client, interaction, args }) => {
     const quote = Memer.quotes();

@@ -10,6 +10,7 @@ module.exports = new Command({
   description: "@user is a baka!",
   userPermissions: ["ATTACH_FILES"],
   category: "Anime Actions",
+  usage: "/baka <user>",
   options: [
     {
       name: "user",

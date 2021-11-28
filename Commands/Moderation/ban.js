@@ -5,6 +5,7 @@ module.exports = new Command({
   description: "Ban a person",
   userPermissions: ["BAN_MEMBERS"],
   category: "Moderation",
+  usage: "/ban <user> [reason]",
   options: [
     {
       type: "USER",

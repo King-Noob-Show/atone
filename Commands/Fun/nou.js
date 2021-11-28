@@ -5,6 +5,7 @@ module.exports = new Command({
   description: "No u",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/no-u [user]",
   options: [
     {
       name: "mention",

@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "Shows the API and Latency ping of the bot!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Information",
+  usage: "/ping",
 
   run: async ({ client, interaction, args }) => {
     const embed = new MessageEmbed()

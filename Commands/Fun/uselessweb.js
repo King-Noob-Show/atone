@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "Go to a random useless website!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/useless-web",
 
   run: async ({ client, interaction, args }) => {
     const url = Memer.uselessweb();

@@ -10,6 +10,7 @@ module.exports = new Command({
   description: "Random anime wallpaper!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Anime Actions",
+  usage: "/wallpaper",
 
   run: async ({ client, interaction, args }) => {
     const { url } = await wallpaper().catch((e) => console.log(e));

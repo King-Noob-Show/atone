@@ -7,6 +7,7 @@ module.exports = new Command({
   description: "Would You Rather?",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/would-you-rather",
 
   run: async ({ client, interaction, args }) => {
     const rather = Memer.wouldYouRather();

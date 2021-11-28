@@ -5,6 +5,7 @@ module.exports = new Command({
   description: "Says whatever you say!",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/say <input>",
   options: [
     {
       name: "input",

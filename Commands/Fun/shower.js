@@ -8,6 +8,7 @@ module.exports = new Command({
   description: "Sends a Random Shower Thought",
   userPermissions: ["SEND_MESSAGES"],
   category: "Fun",
+  usage: "/shower-thought",
 
   run: async ({ client, interaction, args }) => {
     const shower = Memer.showerThought();
