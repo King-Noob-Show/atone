@@ -41,7 +41,7 @@ module.exports = new Command({
         if (cmd.description)
           embed.addField("**Description**", `\`${cmd.description}\``);
         if (cmd.usage) {
-          embed.addField("**Usage**", `\`/${cmd.usage}\``);
+          embed.addField("**Usage**", `\`${cmd.usage}\``);
           embed.setFooter("Syntax: <> = required, [] = optional");
         }
         return interaction.followUp({
