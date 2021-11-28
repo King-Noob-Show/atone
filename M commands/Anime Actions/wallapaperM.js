@@ -1,18 +1,25 @@
-const { Command } = require("reconlx");
 const nekos = require("nekos.life");
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, Client, Message } = require("discord.js");
 const {
   sfw: { wallpaper },
 } = new nekos();
 
-module.exports = new Command({
+module.exports = {
   name: "wallpaper",
   description: "Random anime wallpaper!",
-  userPermissions: ["SEND_MESSAGES"],
+  aliases: ["w"],
   category: "Anime Actions",
-  usage: "/wallpaper",
+  usage: ">>wallpaper",
 
-  run: async ({ client, interaction, args }) => {
+  /**
+   *
+   * @param {Client} client
+   * @param {Message} message
+   * @param {String[]} args
+   * @returns
+   */
+
+  run: async (client, message, args) => {
     const { url } = await wallpaper().catch((e) => console.log(e));
     const bllinks = [
       "https://cdn.nekos.life/wallpaper/Yk22OErU8eg.png",
@@ -39,21 +46,16 @@ module.exports = new Command({
       url === bllinks[3] ||
       url === bllinks[4]
     )
-      return interaction.followUp({
-        content: "An error occured! Please rerun the command!",
-        ephemeral: true,
-      });
+      return message.reply("An error occured! Please rerun the command!");
     if (!url)
-      return interaction.followUp({
-        content:
-          "Sorry, But this command cannot be used right now! Please contact the owner of the bot.",
-        ephemeral: true,
-      });
+      return message.reply(
+        "Sorry, But this command cannot be used right now! Please contact the owner of the bot."
+      );
 
-    interaction.followUp({
+    message.channel.send({
       content:
         "Here you go!\nWARNING: This may return a NSFW wallpaper due to a glitch! If that happens, please contact us at King Noob Show#6679!",
       embeds: [embed],
     });
   },
-});
+};
