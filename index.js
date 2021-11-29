@@ -35,7 +35,8 @@ const ee = require("./settings/embed.json");
 const prefix = process.env.PREFIX;
 const token = process.env.TOKEN;
 // Global Variables
-client.mcommands = new Collection()
+client.mcategories = fs.readdirSync("./M commands");
+client.mcommands = new Collection();
 client.events = new Collection();
 client.cooldowns = new Collection();
 client.Commands = new Collection();

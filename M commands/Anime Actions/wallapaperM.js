@@ -7,7 +7,7 @@ const {
 module.exports = {
   name: "wallpaper",
   description: "Random anime wallpaper!",
-  aliases: ["w"],
+  aliases: ["wall"],
   category: "Anime Actions",
   usage: ">>wallpaper",
 
