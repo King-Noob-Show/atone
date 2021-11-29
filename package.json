@@ -4,7 +4,7 @@
   "description": "A bot made for the server Atone!!",
   "main": "index.js",
   "scripts": {
-    "test": "node ."
+    "test": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -14,7 +14,7 @@
     "atone"
   ],
   "author": "King Noob Show#6679",
-  "license": "SEE LICENSE IN license",
+  "license": "SEE LICENSE IN LICENSE",
   "bugs": {
     "url": "https://github.com/King-Noob-Show/atone-project/issues"
   },
