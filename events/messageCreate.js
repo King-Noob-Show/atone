@@ -23,3 +23,7 @@ client.on("messageCreate", async (message) => {
   if (!mcommand) return;
   await mcommand.run(client, message, args);
 });
+
+client.on("messageCreate", async (message) => {
+  if (message.content.toLowerCase() === "no u") return message.reply(`no u`);
+});

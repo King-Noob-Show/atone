@@ -1,4 +1,6 @@
 const { Command } = require("reconlx");
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = new Command({
   name: "ban",
@@ -25,17 +27,25 @@ module.exports = new Command({
     const reason =
       interaction.options.getString("reason") || "No reason Provided";
 
+    if (target.id === process.env.OWNER_ID)
+      return interaction.followUp("Why you trying to ban my owner!");
+
+    if (target.id === interaction.member.id)
+      return interaction.followUp({
+        content: "Very Funny! But you cannot ban yourself! :/",
+      });
+
     if (
       !target.roles.highest.position >=
       interaction.member.roles.highest.position
     )
       return interaction.followUp({
-        content: `You cannot ban ${target.nickname} because their roles are either equal or higher than yours!`,
+        content: `You cannot ban ${target} because their roles are either equal or higher than yours!`,
         ephemeral: true,
       });
     if (!target.bannable || target.user.id === client.user.id)
       return interaction.followUp({
-        content: `I am sorry but i cannot ban ${target.nickname}!`,
+        content: `I am sorry but i cannot ban ${target}!`,
         ephemeral: true,
       });
 

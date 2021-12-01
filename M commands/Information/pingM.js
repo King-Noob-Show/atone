@@ -5,7 +5,7 @@ module.exports = {
   description: "Tells the ping of the bot",
   usage: ">>ping",
   category: "Information",
-  aliases: ["p"],
+  aliases: ["pi"],
   /**
    *
    * @param {Client} client

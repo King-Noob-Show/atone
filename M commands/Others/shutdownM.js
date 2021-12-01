@@ -17,8 +17,14 @@ module.exports = {
    */
 
   run: async (client, message, args) => {
+    if (!message.member.permissions.has("ADMINISTRATOR"))
+      return message.react(
+        "Sorry This Command can only be used by the owner of the bot."
+      );
     if (message.author.id !== process.env.OWNER_ID)
-      return message.reply("Sorry This Command can only be used by the owner!");
+      return message.reply(
+        "Sorry This Command can only be used by the owner of the bot!"
+      );
 
     message.channel.send("Shutting Down Bot......");
     message.channel.send("Bot has been shut down!");
