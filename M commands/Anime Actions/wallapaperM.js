@@ -32,6 +32,10 @@ module.exports = {
       "https://cdn.nekos.life/wallpaper/ZW6oAKcNZSU.jpg",
       "https://cdn.nekos.life/wallpaper/LCYoIPRBmGA.jpg",
       "https://cdn.nekos.life/wallpaper/SCIYqfdPw7c.jpg",
+      "https://cdn.nekos.life/wallpaper/nWyEwEyiiBw.jpg",
+      "https://cdn.nekos.life/wallpaper/FRk7KQkmtkw.jpg",
+      "https://cdn.nekos.life/wallpaper/WCRYgKmrxqg.jpg",
+      "https://cdn.nekos.life/wallpaper/IqeyVZyT69E.jpg",
     ];
     const embed = new MessageEmbed()
       .setColor("AQUA")
