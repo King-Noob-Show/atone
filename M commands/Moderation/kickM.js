@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = {
-  name: "ban",
-  description: "Ban someone!",
-  aliases: ["b"],
+  name: "kick",
+  description: "Kick a member!",
+  aliases: ["k"],
   category: "Moderation",
-  usage: ">>ban <user> [reason]",
+  usage: ">>kick <user> [reason]",
 
   /**
    * @param {Client} client
@@ -17,40 +17,40 @@ module.exports = {
 
   run: async (client, message, args) => {
     const target = message.mentions.members.first();
-    const reason = args[1] || "No reason Provided!";
+    const reason = args[1] || "No reason was provided!";
 
     if (!target) return message.reply("Please provide a valid user!");
 
-    if (!message.member.permissions.has("BAN_MEMBERS"))
+    if (!message.member.permissions.has("KICK_MEMBERS"))
       return message.reply(
-        "Sorry but you need the BAN_MEMBERS permission to run this command"
+        "Sorry but you need the KICK_MEMBERS permission to run this command!"
       );
     if (target.id === process.env.OWNER_ID)
-      return message.reply("Why you trying to ban my owner!");
+      return message.reply("Why you trying to kick my owner!");
 
     if (target.id === message.member.id)
       return message.reply({
-        content: "Very Funny! But you cannot ban yourself! :/",
+        content: "Very Funny! But you cannot kick yourself! :/",
       });
 
     if (target.roles.highest.position >= message.member.roles.highest.position)
       return message.reply({
-        content: `You cannot ban ${target} because their roles are either equal or higher than yours!`,
+        content: `You cannot kick ${target} because their roles are either equal or higher than yours!`,
       });
-    if (!target.bannable || target.user.id === client.user.id)
+    if (!target.kickable || target.user.id === client.user.id)
       return message.reply({
-        content: `I am sorry but i cannot ban ${target}!`,
+        content: `I am sorry but i cannot kick ${target}!`,
       });
 
     await target
-      .send(`You have been banned from ${message.guild.name} for ${reason}`)
+      .send(`You have been kicked from ${message.guild.name} for ${reason}`)
       .catch((e) => {
         if (e.message.toLowerCase() === "cannot send messages to this user")
           return message.reply("Cannot send messages to this user but.....");
       });
-    target.ban({ reason: reason });
+    target.kick(reason);
     message.channel.send(
-      `${target.user.tag} has been banned from ${message.guild.name} for ${reason}!`
+      `${target.user.tag} has been kicked from ${message.guild.name} for ${reason}!`
     );
   },
 };

@@ -38,6 +38,7 @@ module.exports = {
           embed.setTitle(`Detailed Information about:\`${cmd.name}\``);
         if (cmd.description)
           embed.addField("**Description**", `\`${cmd.description}\``);
+        if (cmd.aliases) embed.addField("**Aliases**", `\`${cmd.aliases}\``);
         if (cmd.usage) {
           embed.addField("**Usage**", `\`${cmd.usage}\``);
           embed.setFooter("Syntax: <> = required, [] = optional");

@@ -8,7 +8,7 @@ module.exports = new Command({
   description: `Show Bot All Commands`,
   userPermissions: ["SEND_MESSAGES"],
   category: "Information",
-  usage: "/help",
+  usage: "/help [command]",
   options: [
     {
       name: "command",

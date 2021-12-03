@@ -3,11 +3,11 @@ const { parse } = require("twemoji-parser");
 const ee = require("../../settings/embed.json");
 
 module.exports = {
-  name: "",
-  description: "",
-  aliases: [""],
-  category: "",
-  usage: "",
+  name: "enlarge",
+  description: "Enlarge an emoji!",
+  aliases: ["en"],
+  category: "Fun",
+  usage: ">>enlarge <emoji>",
 
   /**
    * @param {Client} client
@@ -16,7 +16,8 @@ module.exports = {
    */
 
   run: async (client, message, args) => {
-    const emoji = args[0] || "No emoji was provided!";
+    const emoji = args[0];
+    if (!emoji) return "Please provide a valid emoji";
     const parsedEmoji = Util.parseEmoji(emoji);
 
     if (parsedEmoji) {

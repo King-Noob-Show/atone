@@ -1,17 +1,20 @@
-const { MessageEmbed } = require("discord.js");
-const { Command } = require("reconlx");
-const dotenv = require("dotenv");
-dotenv.config();
+const { Client, Message, MessageEmbed } = require("discord.js");
 const ee = require("../../settings/embed.json");
 
-module.exports = new Command({
+module.exports = {
   name: "credits",
-  description: "Credits to everything and everyone who helped make the bot!",
-  userPermissions: ["SEND_MESSAGES"],
+  description: "Credits to everyone who helped!",
+  aliases: ["credit"],
   category: "Others",
-  usage: "/credits",
+  usage: ">>credits",
 
-  run: async ({ client, interaction, args }) => {
+  /**
+   * @param {Client} client
+   * @param {Message} message
+   * @param {String[]} args
+   */
+
+  run: async (client, message, args) => {
     const embed = new MessageEmbed()
       .setAuthor("Atone", client.user.displayAvatarURL({ dynamic: true }))
       .setColor("AQUA")
@@ -37,6 +40,6 @@ module.exports = new Command({
       .setFooter(ee.embed_footertext, ee.embed_footericon)
       .setTimestamp();
 
-    interaction.followUp({ embeds: [embed] });
+    message.channel.send({ embeds: [embed] });
   },
-});
+};
