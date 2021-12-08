@@ -25,5 +25,7 @@ client.on("messageCreate", async (message) => {
 });
 
 client.on("messageCreate", async (message) => {
-  if (message.content.toLowerCase() === "no u") return message.reply(`no u`);
+  if (message.author.bot) return;
+  if (message.content.toLowerCase() === "no u")
+    return message.reply({ content: "no u", allowedMentions: false });
 });

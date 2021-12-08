@@ -14,10 +14,10 @@ module.exports = {
    */
 
   run: async (client, message, args) => {
-    const input = args[0];
+    const input = args;
 
     if (!input) return message.reply("Please provide a valid input!");
 
-    message.channel.send({ content: `${input}` });
+    message.channel.send({ content: `${input.join(" ")}` });
   },
 };
