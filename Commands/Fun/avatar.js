@@ -21,10 +21,10 @@ module.exports = new Command({
       .setColor("AQUA")
       .setTitle(`${user.username}'s Avatar`)
       .setDescription(`\`Click the button below to download!\``)
-      .setFooter(
-        "Request by " + interaction.member.user.tag,
-        interaction.member.displayAvatarURL()
-      )
+      .setFooter({
+        text: "Request by " + interaction.member.user.tag,
+        iconURL: interaction.member.displayAvatarURL(),
+      })
       .setImage(user.avatarURL({ size: 2048, dynamic: true, format: "png" }));
 
     const row = new MessageActionRow().addComponents([

@@ -124,7 +124,6 @@ module.exports = new Command({
         }
       )
       .setThumbnail(interaction.guild.iconURL())
-      .setFooter(`Cactus`)
       .setTimestamp();
     interaction.followUp({ embeds: [embed] });
   },

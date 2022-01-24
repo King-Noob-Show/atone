@@ -17,7 +17,6 @@ module.exports = new Command({
       .setTitle("Random Shower Thought")
       .setDescription(shower)
       .setColor("AQUA")
-      .setFooter(ee.embed_footertext, ee.embed_footericon)
       .setTimestamp();
 
     await interaction.followUp({

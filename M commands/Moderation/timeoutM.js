@@ -19,7 +19,11 @@ module.exports = {
       return message.reply(
         "You dont have enough permissions to use this command."
       );
+
     const user = message.mentions.members.first();
+    if (!user) {
+      message.reply("No user found.");
+    }
     const time = args[1];
     const member = message.guild.members.cache.get(user.id);
     const reason = args.slice(2).join(" ");

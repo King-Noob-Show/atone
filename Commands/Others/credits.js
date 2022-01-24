@@ -34,7 +34,7 @@ module.exports = new Command({
         "And thanks to ther other api used :-",
         "@discordjs/builders\n@discordjs/rest\n@yimura/scraper\ndiscord-api-types\ndotenv\nglob\nmoment\nmongoose\nnekos.life\nnode-fetch\nrandom-jokes-api\ntwemoji-parser\ncanvas"
       )
-      .setFooter(ee.embed_footertext, ee.embed_footericon)
+      .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon })
       .setTimestamp();
 
     interaction.followUp({ embeds: [embed] });

@@ -42,7 +42,7 @@ module.exports = new Command({
           embed.addField("**Description**", `\`${cmd.description}\``);
         if (cmd.usage) {
           embed.addField("**Usage**", `\`${cmd.usage}\``);
-          embed.setFooter("Syntax: <> = required, [] = optional");
+          embed.setFooter({ text: "Syntax: <> = required, [] = optional" });
         }
         return interaction.followUp({
           embeds: [embed.setColor(ee.embed_color)],
@@ -53,7 +53,10 @@ module.exports = new Command({
           .setTitle(` 🔰 My All Slash Commands`)
           .addField("Developer", `Name :- <@809246018679603201>`)
           .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
-          .setFooter(ee.embed_footertext, ee.embed_footericon);
+          .setFooter({
+            text: ee.embed_footertext,
+            iconURL: ee.embed_footericon,
+          });
 
         const commands = (category) => {
           return client.Commands.filter((cmd) => cmd.category === category).map(

@@ -20,10 +20,13 @@ module.exports = new Command({
       .setTitle("Uptime:")
       .setDescription(`\`\`\`${uptime}\`\`\``)
       .setTimestamp()
-      .setFooter(
-        `${interaction.member.user.tag}`,
-        interaction.member.displayAvatarURL({ format: "png", dynamic: true })
-      );
+      .setFooter({
+        text: `${interaction.member.user.tag}`,
+        iconURL: interaction.member.displayAvatarURL({
+          format: "png",
+          dynamic: true,
+        }),
+      });
 
     interaction.followUp({ embeds: [embed] });
   },

@@ -27,11 +27,11 @@ module.exports = new Command({
       const url = `https://cdn.discordapp.com/emojis/${parsedEmoji.id + ex}`;
       const embed = new MessageEmbed()
         .setColor("AQUA")
-        .setFooter(ee.embed_footertext, ee.embed_footericon)
-        .setAuthor(
-          `Enlarged ${parsedEmoji.name}`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon })
+        .setAuthor({
+          name: `Enlarged ${parsedEmoji.name}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setImage(url);
       return interaction.followUp({ embeds: [embed], ephemeral: false });
     } else {

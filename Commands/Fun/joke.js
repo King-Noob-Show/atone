@@ -17,8 +17,7 @@ module.exports = new Command({
     const embed = new MessageEmbed()
       .setTitle("Random Joke")
       .setColor("AQUA")
-      .setDescription(joke)
-      .setFooter(ee.embed_footertext, ee.embed_footericon);
+      .setDescription(joke);
 
     if (interaction.member.user.id === process.env.OWNER_ID)
       return interaction.followUp({

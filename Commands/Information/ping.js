@@ -17,7 +17,7 @@ module.exports = new Command({
         }ms. API Latency is ${Math.round(client.ws.ping)}ms`
       )
       .setColor(ee.embed_color)
-      .setFooter(ee.embed_footertext, ee.embed_footericon);
+      .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon });
 
     interaction.followUp({
       embeds: [embed],

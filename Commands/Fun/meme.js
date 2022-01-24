@@ -15,7 +15,7 @@ module.exports = new Command({
     const embed = new MessageEmbed()
       .setTitle(meme.title)
       .setImage(meme.url)
-      .setFooter(`Categroy: ${meme.category}`)
+      .setFooter({ text: `Categroy: ${meme.category}` })
       .setColor("AQUA")
       .setTimestamp();
 
