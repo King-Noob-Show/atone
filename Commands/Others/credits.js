@@ -55,7 +55,7 @@ module.exports = new Command({
         iconURL: icon,
       });
 
-    await interaction.followUp("Loading for embed...");
+    await interaction.followUp("Waiting for embed...");
     await interaction.deleteReply();
     await interaction.channel.send({ embeds: [embed] });
   },
