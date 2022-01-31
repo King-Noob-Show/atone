@@ -20,16 +20,16 @@ const client = new Client({
 module.exports = client;
 
 //MongoDB
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-mongoose
-  .connect(process.env.MONGOOSE)
-  .then(() => {
-    console.log("Connected To MongoDB!");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+mongoose.connect(process.env.MONGOOSE, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+}).then(() => {
+  console.log('Connected to MongoDB.')
+}).catch((e) => {
+  console.error(e)
+}) 
 
 const ee = require("./settings/embed.json");
 const prefix = process.env.PREFIX;
