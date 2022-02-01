@@ -46,7 +46,7 @@ module.exports = new Command({
       });
 
     interaction.followUp({
-      content: `${user} was slapped by ${interaction.user}!`,
+      content: `${user} was slapped by ${interaction.member}!`,
       embeds: [embed],
     });
   },

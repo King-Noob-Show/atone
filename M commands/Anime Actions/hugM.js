@@ -20,7 +20,10 @@ module.exports = {
   run: async (client, message, args) => {
     const user = message.mentions.members.first();
     const { url } = await hug().catch((e) => console.log(e));
-    const embed = new MessageEmbed().setColor(url).setImage(url).setTimestamp();
+    const embed = new MessageEmbed()
+      .setColor("AQUA")
+      .setImage(url)
+      .setTimestamp();
 
     if (!user)
       return message.reply({ content: "Please provide a valid user to hug." });

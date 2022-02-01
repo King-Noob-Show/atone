@@ -57,9 +57,9 @@ module.exports = {
             `\n\`${prefix}purge <amount> --`
           )}`
         )
-        .setFooter(
-          `${prefix}purge, ${prefix}clear, ${prefix}delete, ${prefix}prune`
-        );
+        .setFooter({
+          text: `${prefix}purge, ${prefix}clear, ${prefix}delete, ${prefix}prune`,
+        });
 
       if (!args[0] || !args.length)
         return message.channel.send({ embeds: [embd] });

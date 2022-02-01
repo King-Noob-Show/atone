@@ -18,7 +18,7 @@ module.exports = new Command({
   ],
 
   run: async ({ client, interaction, args }) => {
-    const member = interaction.options.getUser("user") || interaction.user;
+    const member = interaction.options.getMember("user") || interaction.member;
     const avatar = await loadImage(member.displayAvatarURL({ format: "jpg" }));
 
     let bg = await loadImage(
