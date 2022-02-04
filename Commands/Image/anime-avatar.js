@@ -9,7 +9,7 @@ module.exports = new Command({
   name: "anime-avatar",
   description: "A random anime image to put as your avatar!",
   userPermissions: ["ATTACH_FILES"],
-  category: "Anime Actions",
+  category: "Image",
   usage: "/anime-avatar",
 
   run: async ({ client, interaction, args }) => {

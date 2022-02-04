@@ -9,7 +9,7 @@ module.exports = new Command({
   name: "hug",
   description: "Hug someone!",
   userPermissions: ["ATTACH_FILES"],
-  category: "Anime Actions",
+  category: "Image",
   usage: "/hug [user]",
   options: [
     {

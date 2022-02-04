@@ -8,7 +8,7 @@ module.exports = {
   name: "hug",
   description: "Hug someone!",
   aliases: ["huggy-wuggy"],
-  category: "Anime Actions",
+  category: "Image",
   usage: ">>hug <user>",
 
   /**

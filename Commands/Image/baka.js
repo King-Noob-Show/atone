@@ -9,7 +9,7 @@ module.exports = new Command({
   name: "baka",
   description: "@user is a baka!",
   userPermissions: ["ATTACH_FILES"],
-  category: "Anime Actions",
+  category: "Image",
   usage: "/baka <user>",
   options: [
     {

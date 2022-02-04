@@ -8,7 +8,7 @@ module.exports = {
   name: "owo",
   description: "OwO",
   aliases: ["owoify"],
-  category: "Anime Actions",
+  category: "Fun",
   usage: ">>owo <text>",
 
   /**

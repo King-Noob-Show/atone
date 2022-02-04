@@ -8,7 +8,7 @@ module.exports = {
   name: "slap",
   description: "Slap someone!",
   aliases: ["sl"],
-  category: "Anime Actions",
+  category: "Image",
   usage: ">>slap <user>",
 
   /**

@@ -6,7 +6,7 @@ module.exports = new Command({
   name: "simpcard",
   description: "Generate a simpcard.",
   userPermissions: ["ATTACH_FILES"],
-  category: "Anime Actions",
+  category: "Image",
   usage: "/simpcard [user]",
   options: [
     {

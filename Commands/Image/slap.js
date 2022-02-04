@@ -9,7 +9,7 @@ module.exports = new Command({
   name: "slap",
   description: "Slap a user",
   userPermissions: ["ATTACH_FILES"],
-  category: "Anime Actions",
+  category: "Image",
   usage: "/slap <user>",
   options: [
     {

@@ -8,7 +8,7 @@ module.exports = new Command({
   name: "gif",
   description: "Search a gif",
   userPermissions: ["SEND_MESSAGES"],
-  category: "Fun",
+  category: "Image",
   usage: "/gif <query>",
   options: [
     {

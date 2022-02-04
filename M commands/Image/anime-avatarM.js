@@ -8,7 +8,7 @@ module.exports = {
   name: "animeavatar",
   description: "Give you a anime profile picture!",
   aliases: ["animeav, aniav"],
-  category: "Anime Actions",
+  category: "Image",
   usage: ">>animeavatar",
 
   /**

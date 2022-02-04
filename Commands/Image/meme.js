@@ -6,7 +6,7 @@ module.exports = new Command({
   name: "meme",
   description: "Sends a random meme",
   userPermissions: ["SEND_MESSAGES"],
-  category: "Fun",
+  category: "Image",
   usage: "/meme",
 
   run: async ({ client, interaction, args }) => {

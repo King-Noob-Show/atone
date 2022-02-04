@@ -5,7 +5,7 @@ module.exports = {
   name: "simpcard",
   description: "Generate a simp card.",
   aliases: ["scard"],
-  category: "Anime Actions",
+  category: "Image",
   usage: ">>simpcard [user]",
 
   /**

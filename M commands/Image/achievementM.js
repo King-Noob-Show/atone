@@ -7,7 +7,7 @@ module.exports = {
   name: "achievement",
   description: "A minecraft achievement.",
   aliases: ["achieve"],
-  category: "Fun",
+  category: "Image",
   usage: ">>achievement <message>",
 
   /**

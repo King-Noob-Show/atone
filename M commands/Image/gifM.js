@@ -8,7 +8,7 @@ module.exports = {
   name: "gif",
   description: "Search a gif.",
   aliases: ["giphy", "searchgif"],
-  category: "Fun",
+  category: "Image",
   usage: ">>gif <query>",
 
   /**

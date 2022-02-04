@@ -10,7 +10,7 @@ module.exports = {
   name: "baka",
   description: "That user is a baka!",
   aliases: ["idiot"],
-  category: "Anime Actions",
+  category: "Image",
   usage: ">>baka <user>",
 
   /**

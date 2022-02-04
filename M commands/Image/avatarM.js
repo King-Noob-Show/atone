@@ -10,7 +10,7 @@ module.exports = {
   name: "avatar",
   description: "Download or see a user's avatar",
   aliases: ["av"],
-  category: "Fun",
+  category: "Image",
   usage: ">>avatar [user]",
 
   /**

@@ -8,7 +8,7 @@ module.exports = new Command({
   name: "achievement",
   description: "Get an achievement",
   userPermissions: ["ATTACH_FILES"],
-  category: "Fun",
+  category: "Image",
   usage: "/achievement <text>",
   options: [
     {
