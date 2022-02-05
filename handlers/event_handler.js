@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const { Client } = require("discord.js");
 const fs = require("fs");
 
@@ -8,6 +9,7 @@ const fs = require("fs");
 
 module.exports = (client) => {
   try {
+    console.log(chalk.cyan.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
     fs.readdirSync("./events/").forEach((file) => {
       const events = fs
         .readdirSync("./events/")
@@ -18,8 +20,9 @@ module.exports = (client) => {
           client.events.set(pull.name, pull);
         }
       }
-      console.log(`${file}  Events Loaded Successfullly`);
+      console.log(chalk.cyan.bold(`${file} has been loaded.`));
     });
+    console.log(chalk.cyan.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
   } catch (e) {
     console.log(e.message);
   }

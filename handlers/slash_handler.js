@@ -1,7 +1,7 @@
 const { Client, ApplicationCommand } = require("discord.js");
 const fs = require("fs");
 const dotenv = require("dotenv");
-
+const chalk = require("chalk");
 dotenv.config();
 
 /**
@@ -36,7 +36,9 @@ module.exports = (client) => {
           .commands.set(arrayOfCommands);
       });
     });
-    console.log(`${command} commands lOADED`);
+    console.log(chalk.green.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
+    console.log(chalk.green.bold(`${command} slash commands loaded!`));
+    console.log(chalk.green.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
   } catch (e) {
     console.log(e.message);
   }

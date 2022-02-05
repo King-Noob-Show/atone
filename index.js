@@ -1,6 +1,7 @@
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const dotenv = require("dotenv");
+const chalk = require("chalk");
 dotenv.config();
 const client = new Client({
   messageCacheLifetime: 60,
@@ -20,16 +21,21 @@ const client = new Client({
 module.exports = client;
 
 //MongoDB
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGOOSE, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true
-}).then(() => {
-  console.log('Connected to MongoDB.')
-}).catch((e) => {
-  console.error(e)
-}) 
+mongoose
+  .connect(process.env.MONGOOSE, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log(chalk.magenta.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
+    console.log(chalk.magenta.bold(`Connected to Database!`));
+    console.log(chalk.magenta.bold("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
+  })
+  .catch((e) => {
+    console.error(e);
+  });
 
 const ee = require("./settings/embed.json");
 const prefix = process.env.PREFIX;
@@ -51,18 +57,20 @@ client.categories = fs.readdirSync("./Commands/");
 client.login(token);
 
 process.on("unhandledRejection", (reason, p) => {
-  console.log(" [Error_Handling] :: Unhandled Rejection/Catch");
-  console.log(reason, p);
+  console.log(chalk.red(" [Error_Handling] :: Unhandled Rejection/Catch"));
+  console.log(chalk.red(reason, p));
 });
 process.on("uncaughtException", (err, origin) => {
-  console.log(" [Error_Handling] :: Uncaught Exception/Catch");
-  console.log(err, origin);
+  console.log(chalk.red(" [Error_Handling] :: Uncaught Exception/Catch"));
+  console.log(chalk.red(err, origin));
 });
 process.on("uncaughtExceptionMonitor", (err, origin) => {
-  console.log(" [Error_Handling] :: Uncaught Exception/Catch (MONITOR)");
-  console.log(err, origin);
+  console.log(
+    chalk.red(" [Error_Handling] :: Uncaught Exception/Catch (MONITOR)")
+  );
+  console.log(chalk.red(err, origin));
 });
 process.on("multipleResolves", (type, promise, reason) => {
-  console.log(" [Error_Handling] :: Multiple Resolves");
-  console.log(type, promise, reason);
+  console.log(chalk.red(" [Error_Handling] :: Multiple Resolves"));
+  console.log(chalk.red(type, promise, reason));
 });
