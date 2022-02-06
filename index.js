@@ -58,19 +58,19 @@ client.login(token);
 
 process.on("unhandledRejection", (reason, p) => {
   console.log(chalk.red(" [Error_Handling] :: Unhandled Rejection/Catch"));
-  console.log(chalk.red(reason, p));
+  console.log(reason, p);
 });
 process.on("uncaughtException", (err, origin) => {
   console.log(chalk.red(" [Error_Handling] :: Uncaught Exception/Catch"));
-  console.log(chalk.red(err, origin));
+  console.log(err, origin);
 });
 process.on("uncaughtExceptionMonitor", (err, origin) => {
   console.log(
     chalk.red(" [Error_Handling] :: Uncaught Exception/Catch (MONITOR)")
   );
-  console.log(chalk.red(err, origin));
+  console.log(err, origin);
 });
 process.on("multipleResolves", (type, promise, reason) => {
   console.log(chalk.red(" [Error_Handling] :: Multiple Resolves"));
-  console.log(chalk.red(type, promise, reason));
+  console.log(type, promise, reason);
 });

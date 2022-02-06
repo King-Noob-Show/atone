@@ -1,4 +1,4 @@
-const { Client, Message, MessageEmbed } = require("discord.js");
+const { Client, Message, MessageEmbed, Util } = require("discord.js");
 const { parse } = require("twemoji-parser");
 const ee = require("../../settings/embed.json");
 
@@ -25,11 +25,11 @@ module.exports = {
       const url = `https://cdn.discordapp.com/emojis/${parsedEmoji.id + ex}`;
       const embed = new MessageEmbed()
         .setColor("AQUA")
-        .setFooter(ee.embed_footertext, ee.embed_footericon)
-        .setAuthor(
-          `Enlarged ${parsedEmoji.name}`,
-          client.user.displayAvatarURL()
-        )
+        .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon })
+        .setAuthor({
+          name: `Enlarged ${parsedEmoji.name}`,
+          iconURL: client.user.displayAvatarURL(),
+        })
         .setImage(url);
       return message.reply({ embeds: [embed] });
     } else {

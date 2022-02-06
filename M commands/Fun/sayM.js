@@ -14,7 +14,7 @@ module.exports = {
    */
 
   run: async (client, message, args) => {
-    const input = args;
+    const input = args.join(" ");
 
     if (!input) return message.reply("Please provide a valid input!");
 

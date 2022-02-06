@@ -25,10 +25,13 @@ module.exports = {
       .setTitle("Uptime:")
       .setDescription(`\`\`\`${uptime}\`\`\``)
       .setTimestamp()
-      .setFooter(
-        `${message.author.tag}`,
-        message.author.displayAvatarURL({ format: "png", dynamic: true })
-      );
+      .setFooter({
+        text: `${message.author.tag}`,
+        iconURL: message.author.displayAvatarURL({
+          format: "png",
+          dynamic: true,
+        }),
+      });
 
     message.channel.send({ embeds: [embed] });
   },

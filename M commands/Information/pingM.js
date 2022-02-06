@@ -1,4 +1,4 @@
-const { Client, Message } = require("discord.js");
+const { Client, Message, MessageEmbed } = require("discord.js");
 
 module.exports = {
   name: "ping",
@@ -13,6 +13,13 @@ module.exports = {
    * @param {String[]} args
    */
   run: async (client, message, args) => {
-    message.reply(`The ping is ${client.ws.ping}`);
+    const embed = new MessageEmbed()
+      .setTitle(
+        `***Latency is ${
+          Date.now() - message.createdTimestamp
+        }ms and API Latency is ${Math.round(client.ws.ping)}.***`
+      )
+      .setTimestamp()
+      .setColor("AQUA");
   },
 };

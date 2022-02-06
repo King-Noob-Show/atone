@@ -27,10 +27,10 @@ module.exports = {
       .setColor("AQUA")
       .setTitle(`${user.username}'s Avatar`)
       .setDescription(`\`Click the button below to download!\``)
-      .setFooter(
-        "Request by " + message.member.user.tag,
-        message.member.displayAvatarURL()
-      )
+      .setFooter({
+        text: "Request by " + message.member.user.tag,
+        iconURL: message.member.displayAvatarURL(),
+      })
       .setImage(user.avatarURL({ size: 2048, dynamic: true, format: "png" }));
 
     const row = new MessageActionRow().addComponents([

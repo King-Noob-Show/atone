@@ -113,10 +113,10 @@ module.exports = {
 
     const UserInfoEm = new MessageEmbed()
       .setColor("AQUA")
-      .setAuthor(
-        member.user.tag,
-        member.user.displayAvatarURL({ dynamic: true })
-      )
+      .setAuthor({
+        name: member.user.tag,
+        iconURL: member.user.displayAvatarURL({ dynamic: true }),
+      })
       .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
       .addFields(
         { name: `Avatar -`, value: `[PNG](${avpng})`, inline: true },
@@ -137,9 +137,9 @@ module.exports = {
           inline: true,
         }
       )
-      .setFooter(
-        `ID - ${member.user.id} | Joined Discord At - ${joinedDiscordAt}`
-      );
+      .setFooter({
+        text: `ID - ${member.user.id} | Joined Discord At - ${joinedDiscordAt}`,
+      });
     await message.channel.send({
       content: `📄 Information about **${member.user.tag}**`,
       embeds: [UserInfoEm],

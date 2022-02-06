@@ -20,7 +20,7 @@ module.exports = {
       .setTitle(meme.title)
       .setColor("AQUA")
       .setImage(meme.url)
-      .setFooter(`Category: ${meme.category}`)
+      .setFooter({ text: `Category: ${meme.category}` })
       .setTimestamp();
 
     message.channel.send({ embeds: [embed] });

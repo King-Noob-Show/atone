@@ -18,6 +18,12 @@ module.exports = {
     const lang = args[0];
     const query = args.slice(1).join(" ");
 
+    if (!lang) {
+      message.reply("Please provide a language and a query");
+    } else if (!query) {
+      message.reply("Please provide a language and a query");
+    }
+
     const trans = await translate(query, { to: lang }).catch((e) => {
       message.reply(e.message);
     });

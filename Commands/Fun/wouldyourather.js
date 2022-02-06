@@ -39,7 +39,7 @@ module.exports = new Command({
       time: 15000,
     });
 
-    collector.on("collect", async (i) => {
+    collector.once("collect", async (i) => {
       if (i.user.id === interaction.user.id) {
         await i.update(`${i.user.username} has chosen ${i.customId}!!`);
       } else {

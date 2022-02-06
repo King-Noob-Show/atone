@@ -41,7 +41,7 @@ module.exports = {
         if (cmd.aliases) embed.addField("**Aliases**", `\`${cmd.aliases}\``);
         if (cmd.usage) {
           embed.addField("**Usage**", `\`${cmd.usage}\``);
-          embed.setFooter("Syntax: <> = required, [] = optional");
+          embed.setFooter({ text: "Syntax: <> = required, [] = optional" });
         }
         return message.channel.send({
           embeds: [embed.setColor(ee.embed_color)],
@@ -52,7 +52,10 @@ module.exports = {
           .setTitle(`My All Message Commands`)
           .addField("Developer", `Name :- <@809246018679603201>`)
           .setThumbnail(client.user.displayAvatarURL({ dynamic: true }))
-          .setFooter(ee.embed_footertext, ee.embed_footericon);
+          .setFooter({
+            text: ee.embed_footertext,
+            iconURL: ee.embed_footericon,
+          });
 
         const commands = (category) => {
           return client.mcommands

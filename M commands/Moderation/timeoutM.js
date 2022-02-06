@@ -26,7 +26,7 @@ module.exports = {
     }
     const time = args[1];
     const member = message.guild.members.cache.get(user.id);
-    const reason = args.slice(2).join(" ");
+    const reason = args.slice(2).join(" ") || "No reason Provided";
 
     const timeinMS = ms(time);
     if (!timeinMS) return message.reply("Please enter a valid time!");

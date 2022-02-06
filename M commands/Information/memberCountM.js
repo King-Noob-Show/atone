@@ -18,7 +18,10 @@ module.exports = {
 
     const embed = new MessageEmbed()
       .setColor("AQUA")
-      .setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true }))
+      .setAuthor({
+        name: message.guild.name,
+        iconURL: message.guild.iconURL({ dynamic: true }),
+      })
       .setTitle(`**Member Count of ${message.guild.name}**`)
       .setDescription(`**${members}**`)
       .setTimestamp();

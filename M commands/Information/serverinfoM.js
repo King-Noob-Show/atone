@@ -128,7 +128,6 @@ module.exports = {
         }
       )
       .setThumbnail(message.guild.iconURL())
-      .setFooter(`Cactus`)
       .setTimestamp();
     message.channel.send({ embeds: [embed] });
   },

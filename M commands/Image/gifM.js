@@ -22,7 +22,7 @@ module.exports = {
       const embed2 = new MessageEmbed()
         .setColor(ee.embed_color)
         .setDescription("**Please Enter A Search Query!**")
-        .setFooter(ee.embed_footertext, ee.embed_footericon);
+        .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon });
       return message.reply({ embeds: [embed2], allowedMentions: false });
     }
     try {
