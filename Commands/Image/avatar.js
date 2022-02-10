@@ -1,5 +1,5 @@
 const { Command } = require("reconlx");
-const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
+const { MessageActionRow, MessageButton } = require("discord.js");
 
 module.exports = new Command({
   name: "avatar",
@@ -14,50 +14,68 @@ module.exports = new Command({
       type: "USER",
       required: false,
     },
+    {
+      name: "userid",
+      description: "The id of the user to get the avatar of!",
+      type: "STRING",
+      required: false,
+    },
   ],
   run: async ({ client, interaction, args }) => {
-    let user = interaction.options.getUser("user") || interaction.user;
-    let embed = new MessageEmbed()
-      .setColor("AQUA")
-      .setTitle(`${user.username}'s Avatar`)
-      .setDescription(`\`Click the button below to download!\``)
-      .setFooter({
-        text: "Request by " + interaction.member.user.tag,
-        iconURL: interaction.member.displayAvatarURL(),
-      })
-      .setImage(user.avatarURL({ size: 2048, dynamic: true, format: "png" }));
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    const user =
+      interaction.options.getUser("user") ||
+      interaction.options.getString("userid") ||
+      interaction.member.id;
 
-    const row = new MessageActionRow().addComponents([
-      new MessageButton()
-        .setURL(
-          user.displayAvatarURL({ size: 2048, dynamic: true, format: "png" })
-        )
-        .setLabel("PNG")
-        .setStyle("LINK"),
-      new MessageButton()
-        .setURL(
-          user.displayAvatarURL({ size: 2048, dynamic: true, format: "jpg" })
-        )
-        .setLabel("JPG")
-        .setStyle("LINK"),
-      new MessageButton()
-        .setURL(
-          user.displayAvatarURL({ size: 2048, dynamic: true, format: "webp" })
-        )
-        .setLabel("WEBP")
-        .setStyle("LINK"),
-      new MessageButton()
-        .setURL(
-          user.displayAvatarURL({ size: 2048, dynamic: true, format: "gif" })
-        )
-        .setLabel("GIF")
-        .setStyle("LINK"),
-    ]);
+    if (user === interaction.options.getUser("user")) {
+      return getAvatar(user.id);
+    } else if (user === interaction.options.getString("userid")) {
+      if (isNaN(user) === true) {
+        return interaction.channel.send(
+          "ID must be a number!" + " " + interaction.member.displayName
+        );
+      } else {
+        return getAvatar(user);
+      }
+    } else {
+      return getAvatar(user);
+    }
 
-    interaction.followUp({
-      embeds: [embed],
-      components: [row],
-      ephemeral: false,
-    });
+    function getAvatar(id) {
+      client.users
+        .fetch(id)
+        .then(async (user) => {
+          return sendEmbed(user);
+        })
+        .catch(() => {
+          return sendEmbed(interaction.member);
+        });
+    }
+    function sendEmbed(target) {
+      const png = target.displayAvatarURL({ format: "png" });
+      const jpg = target.displayAvatarURL({ format: "jpg" });
+      const webp = target.displayAvatarURL({ format: "webp" });
+      const gif = target.displayAvatarURL({ format: "gif", dynamic: true });
+      const embed = {
+        title: "Avatar",
+        description: `Avatar of ${target.username}`,
+        image: {
+          url: target.displayAvatarURL({ dynamic: true, size: 512 }),
+        },
+        color: "AQUA",
+      };
+      const row = new MessageActionRow().addComponents([
+        new MessageButton().setURL(png).setLabel("PNG").setStyle("LINK"),
+        new MessageButton().setURL(jpg).setLabel("JPG").setStyle("LINK"),
+        new MessageButton().setURL(webp).setLabel("WEBP").setStyle("LINK"),
+        new MessageButton().setURL(gif).setLabel("GIF").setStyle("LINK"),
+      ]);
+      return interaction.channel.send({
+        embeds: [embed],
+        components: [row],
+      });
+    }
   },
 });
