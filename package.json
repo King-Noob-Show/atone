@@ -1,6 +1,6 @@
 {
   "name": "atone-project",
-  "version": "0.0.69",
+  "version": "0.0.7",
   "description": "A bot made for the server Atone!!",
   "main": "index.js",
   "scripts": {
