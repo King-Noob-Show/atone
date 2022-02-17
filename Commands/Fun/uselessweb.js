@@ -22,6 +22,8 @@ module.exports = new Command({
       new MessageButton().setStyle("LINK").setURL(url).setLabel("URL"),
     ]);
 
-    interaction.followUp({ embeds: [embed], components: [buttons] });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.followUp({ embeds: [embed], components: [buttons] });
   },
 });

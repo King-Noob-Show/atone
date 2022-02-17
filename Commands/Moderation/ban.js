@@ -52,8 +52,11 @@ module.exports = new Command({
     await target.send(
       `You have been banned from ${interaction.guild.name} for ${reason}`
     );
-    target.ban({ reason });
-    interaction.followUp(
+    await target.ban({ reason });
+
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send(
       `${target.user.tag} has been banned from ${interaction.guild.name} for ${reason}!`
     );
   },

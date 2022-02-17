@@ -43,6 +43,11 @@ module.exports = new Command({
         ephemeral: false,
       });
 
-    interaction.followUp({ content: `${user} Baka!`, embeds: [embed] });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
+      content: `${user} Baka!`,
+      embeds: [embed],
+    });
   },
 });

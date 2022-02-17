@@ -26,6 +26,8 @@ module.exports = new Command({
         ephemeral: false,
       });
 
-    await interaction.followUp({ embeds: [embed] });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({ embeds: [embed] });
   },
 });

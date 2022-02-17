@@ -17,9 +17,10 @@ module.exports = new Command({
   run: async ({ client, interaction, args }) => {
     const input = interaction.options.getString("input");
 
-    await interaction.followUp({
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
       content: `${interaction.user.username} says ${input}`,
-      ephemeral: false,
     });
   },
 });

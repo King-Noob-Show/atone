@@ -34,7 +34,7 @@ module.exports = new Command({
     } else if (user === interaction.options.getString("userid")) {
       if (isNaN(user) === true) {
         return interaction.channel.send(
-          "ID must be a number!" + " " + interaction.member.displayName
+          `ID must be a number! <@${interaction.member}>`
         );
       } else {
         return getAvatar(user);

@@ -38,7 +38,12 @@ module.exports = new Command({
     const timeinMS = ms(time);
     if (!timeinMS) return interaction.followUp("Please enter a valid time!");
 
-    member.timeout(timeinMS, reason);
-    interaction.followUp(`${user} has been timed out for ${time}. (${reason})`);
+    await member.timeout(timeinMS, reason);
+
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send(
+      `${user} has been timed out for ${time}. (${reason})`
+    );
   },
 });

@@ -29,6 +29,9 @@ module.exports = new Command({
     const trans = await translate(query, { to: lang }).catch((e) => {
       interaction.followUp(e.message);
     });
-    interaction.followUp(trans.text).catch(() => {});
+
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send(`${trans.text}`).catch(() => {});
   },
 });

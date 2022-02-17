@@ -20,14 +20,15 @@ module.exports = new Command({
   ],
 
   run: async ({ client, interaction, args }) => {
-    if (!args[0]) {
+    const qq = interaction.options.getString("query");
+    if (!qq) {
       const embed2 = new MessageEmbed()
         .setColor("AQUA")
         .setDescription("**Please Enter A Search Query!**");
       return interaction.followUp({ embeds: [embed2], allowedMentions: false });
     }
     try {
-      const search = interaction.options.getString("gifquery");
+      const search = interaction.options.getString("query");
       giphy.search(search).then(function (res) {
         let id = res.data[0].id;
         let url = `https://media.giphy.com/media/${id}/giphy.gif`;

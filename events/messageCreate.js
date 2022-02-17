@@ -1,15 +1,24 @@
 const client = require("..");
 const dotenv = require("dotenv");
 dotenv.config();
-const prefix = process.env.prefix;
+const prefixModel = require("../models/prefixModel");
 
 client.on("messageCreate", async (message) => {
-  if (
-    message.author.bot ||
-    !message.guild ||
-    !message.content.toLowerCase().startsWith(prefix)
-  )
-    return;
+  if (message.author.bot || !message.guild) return;
+
+  const data = await prefixModel.findOne({
+    guildId: message.guildId,
+  });
+
+  let prefix = ">>";
+
+  if (data) {
+    prefix = data.prefix;
+  } else if (!data) {
+    prefix = ">>";
+  }
+
+  if (!message.content.startsWith(prefix)) return;
 
   const [cmd, ...args] = message.content
     .slice(prefix.length)

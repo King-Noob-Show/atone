@@ -23,7 +23,16 @@ module.exports = new Command({
       name: "type",
       description: "Type of the giga chad (can only be normal or god)",
       type: "STRING",
-      required: false,
+      choices: [
+        {
+          name: "Normal",
+          value: "normal",
+        },
+        {
+          name: "God",
+          value: "god",
+        },
+      ],
     },
   ],
 
@@ -31,9 +40,15 @@ module.exports = new Command({
     const user = interaction.options.getMember("user") || interaction.member;
     const av = user.displayAvatarURL({ format: "jpg", dynamic: true });
 
-    let type;
+    let type = "normal";
 
     if (interaction.options.getString("type")) {
+      type = interaction.options.getString("type");
+    }
+
+    // Old code before I knew choices existed lol
+
+    /* if (interaction.options.getString("type")) {
       if (
         interaction.options.getString("type") === "normal" ||
         interaction.options.getString("type") === "god"
@@ -51,7 +66,7 @@ module.exports = new Command({
 
     if (type === undefined) {
       type = "normal";
-    }
+    } */
 
     const url = `${base}image/gigachad${token}&image=${av}&type=${type}`;
 

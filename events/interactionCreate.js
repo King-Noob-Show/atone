@@ -47,5 +47,6 @@ client.on("interactionCreate", async (interaction) => {
     if (command) command.run(client, interaction);
   }
 
+  //Button Handling
   if (!interaction.isButton()) return;
 });

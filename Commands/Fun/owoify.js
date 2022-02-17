@@ -8,7 +8,7 @@ module.exports = new Command({
   name: "owoify",
   description: "OwOify a message!",
   userPermissions: ["SEND_MESSAGES"],
-  category: "Image",
+  category: "Fun",
   usage: "/owoify <message>",
   options: [
     {
@@ -23,6 +23,8 @@ module.exports = new Command({
     const text = interaction.options.getString("message");
     const { owo } = await OwOify({ text: text }).catch((e) => console.log(e));
 
-    interaction.followUp({ content: owo });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({ content: owo });
   },
 });

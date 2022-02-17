@@ -20,7 +20,7 @@ module.exports = new Command({
 
   run: async ({ client, interaction, args }) => {
     const { options, guild } = interaction;
-    const user = options.getMember("member") || interaction.user;
+    const user = options.getMember("member") || interaction.member;
     const member = await interaction.guild.members.fetch(user);
     const owner = await guild.fetchOwner();
     const avpng = member.user.displayAvatarURL({
@@ -144,7 +144,10 @@ module.exports = new Command({
       .setFooter({
         text: `ID - ${member.user.id} | Joined Discord At - ${joinedDiscordAt}`,
       });
-    await interaction.followUp({
+
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
       content: `📄 Information about **${member.user.tag}**`,
       embeds: [UserInfoEm],
     });

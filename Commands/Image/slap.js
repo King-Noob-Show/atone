@@ -45,7 +45,9 @@ module.exports = new Command({
         ephemeral: false,
       });
 
-    interaction.followUp({
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
       content: `${user} was slapped by ${interaction.member}!`,
       embeds: [embed],
     });

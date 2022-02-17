@@ -33,6 +33,8 @@ module.exports = new Command({
 
     const attachment = new MessageAttachment(canvas.toBuffer(), "simpcard.jpg");
 
-    interaction.followUp({ files: attachment });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({ files: [attachment] });
   },
 });

@@ -42,8 +42,11 @@ module.exports = new Command({
     await target.send(
       `You have been kicked from ${interaction.guild.name} for ${reason}`
     );
-    target.kick(reason);
-    interaction.followUp(
+    await target.kick(reason);
+
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send(
       `${target.user.tag} has been kicked from ${interaction.guild.name} for ${reason}!`
     );
   },

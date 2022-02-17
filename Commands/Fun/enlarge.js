@@ -1,7 +1,7 @@
-const { MessageEmbed, Util } = require("discord.js");
-const { parse } = require("twemoji-parser");
+const { MessageEmbed, Util, Message } = require("discord.js");
 const { Command } = require("reconlx");
 const ee = require("../../settings/embed.json");
+
 module.exports = new Command({
   name: "enlarge",
   description: "Enlarge an emoji",
@@ -17,8 +17,11 @@ module.exports = new Command({
     },
   ],
   run: async ({ client, interaction, args }) => {
-    const emoji =
-      interaction.options.getString("emoji") || "No emoji was provided";
+    const emoji = interaction.options.getString("emoji");
+
+    if (!emoji) {
+      return interaction.followUp("Please supply a valid emoji!");
+    }
 
     const parsedEmoji = Util.parseEmoji(emoji);
 
@@ -27,13 +30,21 @@ module.exports = new Command({
       const url = `https://cdn.discordapp.com/emojis/${parsedEmoji.id + ex}`;
       const embed = new MessageEmbed()
         .setColor("AQUA")
-        .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon })
+        .setFooter({
+          text: `Requested by ${interaction.member}`,
+          iconURL: interaction.member.displayAvatarURL({
+            format: "png",
+            dynamic: true,
+          }),
+        })
         .setAuthor({
           name: `Enlarged ${parsedEmoji.name}`,
-          iconURL: client.user.displayAvatarURL(),
         })
         .setImage(url);
-      return interaction.followUp({ embeds: [embed], ephemeral: false });
+
+      await interaction.followUp("Loading...");
+      await interaction.deleteReply();
+      await interaction.channel.send({ embeds: [embed] });
     } else {
       return interaction.followUp({
         content: `Please supply a valid emoji!`,

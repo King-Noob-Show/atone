@@ -19,9 +19,8 @@ module.exports = new Command({
       .setColor(ee.embed_color)
       .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon });
 
-    interaction.followUp({
-      embeds: [embed],
-      ephemeral: false,
-    });
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({ embeds: [embed] });
   },
 });

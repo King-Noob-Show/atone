@@ -1,5 +1,4 @@
 const { Client, Message, MessageEmbed, Util } = require("discord.js");
-const { parse } = require("twemoji-parser");
 const ee = require("../../settings/embed.json");
 
 module.exports = {
@@ -25,13 +24,18 @@ module.exports = {
       const url = `https://cdn.discordapp.com/emojis/${parsedEmoji.id + ex}`;
       const embed = new MessageEmbed()
         .setColor("AQUA")
-        .setFooter({ text: ee.embed_footertext, iconURL: ee.embed_footericon })
+        .setFooter({
+          text: `Requested by ${interaction.member}`,
+          iconURL: interaction.member.displayAvatarURL({
+            format: "png",
+            dynamic: true,
+          }),
+        })
         .setAuthor({
           name: `Enlarged ${parsedEmoji.name}`,
-          iconURL: client.user.displayAvatarURL(),
         })
         .setImage(url);
-      return message.reply({ embeds: [embed] });
+      return message.channel.send({ embeds: [embed] });
     } else {
       return message.reply({
         content: `Please supply a valid emoji!`,

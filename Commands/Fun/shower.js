@@ -19,9 +19,10 @@ module.exports = new Command({
       .setColor("AQUA")
       .setTimestamp();
 
-    await interaction.followUp({
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
       embeds: [embed],
-      ephemeral: false,
     });
   },
 });

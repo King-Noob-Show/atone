@@ -23,7 +23,10 @@ module.exports = new Command({
   run: async ({ client, interaction, args }) => {
     const user = interaction.options.getMember("user");
     const { url } = await hug().catch((e) => console.log(e));
-    const embed = new MessageEmbed().setColor(url).setImage(url).setTimestamp();
+    const embed = new MessageEmbed()
+      .setColor("AQUA")
+      .setImage(url)
+      .setTimestamp();
 
     if (user.id === interaction.user.id)
       return interaction.followUp({
@@ -41,7 +44,9 @@ module.exports = new Command({
         ephemeral: true,
       });
 
-    interaction.followUp({
+    await interaction.followUp("Loading...");
+    await interaction.deleteReply();
+    await interaction.channel.send({
       content: `${interaction.user} hugged ${user}`,
       embeds: [embed],
     });
