@@ -14,13 +14,23 @@ module.exports = new Command({
       name: "user",
       description: "The user to see warnings of.",
       type: "USER",
-      required: true,
+      required: false,
+    },
+    {
+      name: "userid",
+      description: "Id of the user to see the warnings of!",
+      type: "STRING",
+      required: false,
     },
   ],
 
   run: async ({ client, interaction, args }) => {
     try {
-      const user = interaction.options.getMember("user");
+      const user =
+        interaction.options.getMember("user") ||
+        interaction.guild.members.cache.get(
+          interaction.options.getString("userid")
+        );
       if (!user) return interaction.followUp("Please provide a valid user!");
 
       const userWarnings = await warnModel.find({

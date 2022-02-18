@@ -23,7 +23,9 @@ module.exports = {
         );
       if (!args) return message.reply("Please provide valid info!");
 
-      const user = message.mentions.members.first();
+      const user =
+        message.mentions.members.first() ||
+        message.guild.members.cache.get(args[0]);
       const reason = args.slice(1).join(" ") || "No reason provided.";
       if (!user) return message.reply("Please provide a valid user!");
 

@@ -11,7 +11,13 @@ module.exports = new Command({
       name: "user",
       description: "The user to kick!",
       type: "USER",
-      required: true,
+      required: false,
+    },
+    {
+      name: "userid",
+      description: "Id of the user to kick!",
+      type: "STRING",
+      required: false,
     },
     {
       name: "reason",
@@ -21,7 +27,15 @@ module.exports = new Command({
     },
   ],
   run: async ({ client, interaction, args }) => {
-    const target = interaction.options.getMember("user");
+    const target =
+      interaction.options.getMember("user") ||
+      interaction.guild.members.cache.get(
+        interaction.options.getString("userid")
+      );
+
+    if (!target) {
+      return interaction.followUp("Please provide a valid user!");
+    }
     const reason =
       interaction.options.getString("reason") || "No reason Provided";
 
@@ -42,7 +56,11 @@ module.exports = new Command({
     await target.send(
       `You have been kicked from ${interaction.guild.name} for ${reason}`
     );
-    await target.kick(reason);
+    await target.kick(reason).catch(() => {
+      return interaction.followUp(
+        `I cannot kick ${target} as they are above or equal to my role or they have admin perms.`
+      );
+    });
 
     await interaction.followUp("Loading...");
     await interaction.deleteReply();

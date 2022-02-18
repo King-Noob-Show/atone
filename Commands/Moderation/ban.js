@@ -13,7 +13,13 @@ module.exports = new Command({
       type: "USER",
       name: "user",
       description: "The user to ban!",
-      required: true,
+      required: false,
+    },
+    {
+      name: "userid",
+      description: "Id of the user to ban!",
+      type: "STRING",
+      required: false,
     },
     {
       type: "STRING",
@@ -23,7 +29,16 @@ module.exports = new Command({
     },
   ],
   run: async ({ client, interaction, args }) => {
-    const target = interaction.options.getMember("user");
+    const target =
+      interaction.options.getMember("user") ||
+      interaction.guild.members.cache.get(
+        interaction.options.getString("userid")
+      );
+
+    if (!target) {
+      return interaction.followUp("Please provide a valid user!");
+    }
+
     const reason =
       interaction.options.getString("reason") || "No reason Provided";
 
@@ -36,8 +51,7 @@ module.exports = new Command({
       });
 
     if (
-      !target.roles.highest.position >=
-      interaction.member.roles.highest.position
+      target.roles.highest.position >= interaction.member.roles.highest.position
     )
       return interaction.followUp({
         content: `You cannot ban ${target} because their roles are either equal or higher than yours!`,
@@ -52,7 +66,11 @@ module.exports = new Command({
     await target.send(
       `You have been banned from ${interaction.guild.name} for ${reason}`
     );
-    await target.ban({ reason });
+    await target.ban({ reason }).catch(() => {
+      return interaction.followUp(
+        `I cannot ban ${target} as they are above or equal to my role or they have admin perms.`
+      );
+    });
 
     await interaction.followUp("Loading...");
     await interaction.deleteReply();

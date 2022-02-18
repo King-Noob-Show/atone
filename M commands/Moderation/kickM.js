@@ -16,15 +16,20 @@ module.exports = {
    */
 
   run: async (client, message, args) => {
-    const target = message.mentions.members.first();
-    const reason = args[1] || "No reason was provided!";
-
-    if (!target) return message.reply("Please provide a valid user!");
-
     if (!message.member.permissions.has("KICK_MEMBERS"))
       return message.reply(
         "Sorry but you need the KICK_MEMBERS permission to run this command!"
       );
+
+    const target =
+      message.mentions.members.first() ||
+      message.guild.members.cache.get(args[0]);
+    const reason = args.slice(1).join(" ") || "No reason provided!";
+
+    if (!target) {
+      return message.reply("Please provide a valid target!");
+    }
+
     if (target.id === process.env.OWNER_ID)
       return message.reply("Why you trying to kick my owner!");
 
@@ -48,7 +53,11 @@ module.exports = {
         if (e.message.toLowerCase() === "cannot send messages to this user")
           return message.reply("Cannot send messages to this user but.....");
       });
-    target.kick(reason);
+    target.kick(reason).catch(() => {
+      return message.reply(
+        `I cannot kick ${target} as they are above or equal to my role or they have admin perms.`
+      );
+    });
     message.channel.send(
       `${target.user.tag} has been kicked from ${message.guild.name} for ${reason}!`
     );

@@ -21,7 +21,9 @@ module.exports = {
         return message.reply(
           "You don't have enough permissions to use this command."
         );
-      const user = message.mentions.members.first();
+      const user =
+        message.mentions.members.first() ||
+        message.guild.members.cache.get(args[0]);
       if (!user) return message.reply("Please provide a valid user!");
 
       const userWarnings = await warnModel.find({

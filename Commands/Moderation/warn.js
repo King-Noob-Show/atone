@@ -14,7 +14,13 @@ module.exports = new Command({
       name: "user",
       description: "The user to warn!",
       type: "USER",
-      required: true,
+      required: false,
+    },
+    {
+      name: "userid",
+      description: "Id of the user to warn!",
+      type: "STRING",
+      required: false,
     },
     {
       name: "reason",
@@ -26,7 +32,16 @@ module.exports = new Command({
 
   run: async ({ client, interaction, args }) => {
     try {
-      const user = interaction.options.getMember("user");
+      const user =
+        interaction.options.getMember("user") ||
+        interaction.guild.members.cache.get(
+          interaction.options.getString("userid")
+        );
+
+      if (!user) {
+        return interaction.followUp("Please provide a valid user!");
+      }
+
       const reason =
         interaction.options.getString("reason") || "No reason provided.";
       if (!user) return interaction.followUp("Please provide a valid user!");
