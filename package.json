@@ -1,5 +1,5 @@
 {
-  "name": "atone-project",
+  "name": "atone",
   "version": "0.0.75",
   "description": "A bot made for the server Atone!!",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/King-Noob-Show/atone-project.git"
+    "url": "git+https://github.com/King-Noob-Show/atone.git"
   },
   "keywords": [
     "atone"
@@ -16,9 +16,9 @@
   "author": "King Noob Show#6679",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/King-Noob-Show/atone-project/issues"
+    "url": "https://github.com/King-Noob-Show/atone/issues"
   },
-  "homepage": "https://github.com/King-Noob-Show/atone-project#readme",
+  "homepage": "https://github.com/King-Noob-Show/atone#readme",
   "dependencies": {
     "@discordjs/builders": "^0.12.0",
     "@discordjs/rest": "^0.3.0",
@@ -41,5 +41,6 @@
     "nekos.life": "^2.0.9",
     "random-jokes-api": "^1.5.9",
     "reconlx": "^2.5.2"
-  }
+  },
+  "devDependencies": {}
 }
